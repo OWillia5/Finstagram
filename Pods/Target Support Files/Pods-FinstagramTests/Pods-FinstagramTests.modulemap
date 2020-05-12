@@ -1,0 +1,6 @@
+framework module Pods_FinstagramTests {
+  umbrella header "Pods-FinstagramTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
