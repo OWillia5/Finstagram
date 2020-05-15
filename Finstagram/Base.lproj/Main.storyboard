@@ -10,7 +10,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="Finstagram" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" customModule="Finstagram" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -77,7 +77,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1993" y="29"/>
+            <point key="canvasLocation" x="-751" y="29"/>
         </scene>
         <!--Feed View Controller-->
         <scene sceneID="o1V-vh-93P">
@@ -146,6 +146,11 @@
                         <viewLayoutGuide key="safeArea" id="mlp-Oq-eZQ"/>
                     </view>
                     <navigationItem key="navigationItem" id="xGR-ws-HWL">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="Ebz-Nl-EVn">
+                            <connections>
+                                <action selector="onLogoutButton:" destination="mzx-Bi-5k0" id="ZLU-Ft-dz5"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="insta_camera_btn" id="X9U-kP-NnX">
                             <connections>
                                 <segue destination="Rv6-l4-1Ki" kind="presentation" modalPresentationStyle="fullScreen" id="BEW-IC-jmK"/>
@@ -158,7 +163,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fmo-wO-zUa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-355.07246376811599" y="28.532608695652176"/>
+            <point key="canvasLocation" x="97" y="55"/>
         </scene>
         <!--Camera View Controller-->
         <scene sceneID="g22-96-sQ2">
@@ -214,7 +219,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Tga-Wc-GhJ">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ITk-gE-YJe" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="FeedNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="ITk-gE-YJe" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="EnH-g6-ZTX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -227,7 +232,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RxC-hD-Zaa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1155" y="29"/>
+            <point key="canvasLocation" x="39" y="-624"/>
         </scene>
     </scenes>
     <resources>
