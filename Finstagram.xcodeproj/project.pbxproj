@@ -20,6 +20,7 @@
 		5EF326B224673B8C0096DD62 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EF326B024673B8C0096DD62 /* LaunchScreen.storyboard */; };
 		5EF326BD24673B8C0096DD62 /* FinstagramTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF326BC24673B8C0096DD62 /* FinstagramTests.swift */; };
 		5EF326C824673B8C0096DD62 /* FinstagramUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF326C724673B8C0096DD62 /* FinstagramUITests.swift */; };
+		5EF557E024704664003CF244 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF557DF24704664003CF244 /* CommentCell.swift */; };
 		E5C7B54839CC58B5D9C9BD3D /* Pods_FinstagramTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E770A34786EE1F7EB270F7DF /* Pods_FinstagramTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +60,7 @@
 		5EF326C324673B8C0096DD62 /* FinstagramUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FinstagramUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EF326C724673B8C0096DD62 /* FinstagramUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinstagramUITests.swift; sourceTree = "<group>"; };
 		5EF326C924673B8C0096DD62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5EF557DF24704664003CF244 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		60B591990BA3AE90923BC2C9 /* Pods_Finstagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Finstagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		850CD1988838BE95D279E091 /* Pods-Finstagram-FinstagramUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Finstagram-FinstagramUITests.release.xcconfig"; path = "Target Support Files/Pods-Finstagram-FinstagramUITests/Pods-Finstagram-FinstagramUITests.release.xcconfig"; sourceTree = "<group>"; };
 		8817C34161C211246F8AF1F3 /* Pods-FinstagramTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinstagramTests.release.xcconfig"; path = "Target Support Files/Pods-FinstagramTests/Pods-FinstagramTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				5EE225FA246751950085D129 /* FeedViewController.swift */,
 				5EE225FC246761780085D129 /* CameraViewController.swift */,
 				5E0FEEA5246A16B0009A0671 /* PostCell.swift */,
+				5EF557DF24704664003CF244 /* CommentCell.swift */,
 			);
 			path = Finstagram;
 			sourceTree = "<group>";
@@ -422,6 +425,7 @@
 				5EE225FB246751950085D129 /* FeedViewController.swift in Sources */,
 				5EF326A824673B8A0096DD62 /* SceneDelegate.swift in Sources */,
 				5E0FEEA6246A16B0009A0671 /* PostCell.swift in Sources */,
+				5EF557E024704664003CF244 /* CommentCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
