@@ -23,19 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                   configuration.server = "https://damp-stream-62172.herokuapp.com/parse"
               })
           )
-        
-        if PFUser.current() != nil {
-            let main = UIStoryboard(name: "Main", bundle: nil)
-            
-            //created an instance of the feed navigation controller
-            let feedNavigationController = main.instantiateViewController(withIdentifier: "FeedNavigationController")
-            
-            window?.rootViewController = feedNavigationController
-        
-        }
-
         return true
     }
+
     
     
     // MARK: UISceneSession Lifecycle

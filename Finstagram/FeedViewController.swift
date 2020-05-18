@@ -9,29 +9,67 @@
 import UIKit
 import Parse
 import AlamofireImage
+import MessageInputBar
 
 //create UIRefreshControl as an instance variable because it will be needed to access the stop loading feature
 var refreshControl: UIRefreshControl!
 
-class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MessageInputBarDelegate {
    
 
     @IBOutlet weak var tableView: UITableView!
     
+    let commentBar = MessageInputBar()
+    
+    //sets the comment text bar not to be shown by default
+    var showsCommentBar = false
     
     var posts = [PFObject]()
+    var selectedPost: PFObject!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        commentBar.inputTextView.placeholder = "Add a comment..."
+        commentBar.sendButton.title = "Post"
+        commentBar.delegate = self
+        
         tableView.delegate = self
         tableView.dataSource = self
+        
+        //enables the keyboard to be dismissed by scrolling
+        tableView.keyboardDismissMode = .interactive
+        
+        //grab  the post office notification center
+        //I want to observe an event (The keyboard hiding)
+        //on myself call this function
+        let center = NotificationCenter.default
+        center.addObserver(self, selector: #selector(keyboardWillBeHidden(note:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(onRefresh), for: .valueChanged)
         tableView.insertSubview(refreshControl, at: 0)
         
         // Do any additional setup after loading the view.
+    }
+    
+    //event for when the comment bar is clicked
+    @objc func keyboardWillBeHidden(note: Notification){
+        //everytime the keyboard is dismissed, clear the text field
+        commentBar.inputTextView.text = nil
+        
+        showsCommentBar = false
+        becomeFirstResponder()
+    }
+    
+    //allow the incorporation of a comment text bar at the bottom of the screen
+    override var inputAccessoryView: UIView?{
+        return commentBar
+    }
+    
+    //initiates access to keyboard for comment text bar
+    override var canBecomeFirstResponder: Bool {
+        return showsCommentBar
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -50,14 +88,41 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     
+    func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
+        //create the comment
+        let comment = PFObject(className: "Comments")
+        comment["text"] = "This is a random comment"
+          comment["post"] = selectedPost
+          comment["author"] = PFUser.current()//author is the current user signed in
+          
+          selectedPost.add(comment, forKey: "comments")
+          
+          selectedPost.saveInBackground { (success, error) in
+              if success{
+                  print("Comment saved")
+              } else {
+                  print("Error saving comment")
+              }
+          }
+        //to trigger newly created comments to appear immediately
+        tableView.reloadData()
+        
+        //clear and dismiss the input bar
+        commentBar.inputTextView.text = nil
+        
+        showsCommentBar = false
+        becomeFirstResponder()
+        commentBar.inputTextView.resignFirstResponder()
+    }
  
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         let post = posts[section] //grab the post
         //grab the comments and declare them as an array of PFObject, then use a nil coalescing operator (which says whatever is on the left if nil set it to this
         let comments = (post["comment"] as? [(PFObject)]) ?? []
         
-        return comments.count + 1 //
+        return comments.count + 2//
         
     }
     
@@ -91,16 +156,20 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.photoView.af_setImage(withURL: url)
             
             return cell
-        } else {
+        } else if indexPath.row <= comments.count {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell") as! CommentCell
             
             let comment = comments[indexPath.row - 1]
             
-            cell.commentLabel.text = comment["text"] as! String
+            cell.commentLabel.text = comment["text"] as? String
             
             let user = comment["author"] as! PFUser
             
             cell.nameLabel.text = user.username
+            
+            return cell
+        } else{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "AddCommentCell")!
             
             return cell
         }
@@ -111,23 +180,26 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         //choose post to add comment to
-        let post = posts[indexPath.row]
+        let post = posts[indexPath.section]
         
         //create your comment object
-        let comment = PFObject(className: "Comments")
-        comment["text"] = "This is a random comment"
-        comment["post"] = post
-        comment["author"] = PFUser.current()//author is the current user signed in
+        let comments = (post["comments"] as? [PFObject]) ??
+           []
         
-        post.add(comment, forKey: "comments")
-        
-        post.saveInBackground { (success, error) in
-            if success{
-                print("Comment saved")
-            } else {
-                print("Error saving comment")
-            }
+        //if we are at the last cell then display the comment
+        if indexPath.row == comments.count + 1 {
+            showsCommentBar = true
+            becomeFirstResponder()
+            
+            //then allows the keyboard to be displayed as well
+            commentBar.inputTextView.becomeFirstResponder()
+            
+            selectedPost = post
         }
+        
+        /*
+  
+       */
     }
     
     func loadMorePosts(){

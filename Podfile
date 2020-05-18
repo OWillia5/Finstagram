@@ -8,6 +8,7 @@ target 'Finstagram' do
   # Pods for Finstagram
   pod "Parse"
   pod "AlamofireImage"
+  pod "MessageInputBar"
 
   target 'FinstagramTests' do
     inherit! :search_paths
