@@ -120,7 +120,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let post = posts[section] //grab the post
         //grab the comments and declare them as an array of PFObject, then use a nil coalescing operator (which says whatever is on the left if nil set it to this
-        let comments = (post["comment"] as? [(PFObject)]) ?? []
+        let comments = (post["comments"] as? [(PFObject)]) ?? []
         
         return comments.count + 2//
         
@@ -136,7 +136,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let post = posts[indexPath.section]
         
-        let comments = (post["comment"] as? [(PFObject)]) ?? []
+        let comments = (post["comments"] as? [(PFObject)]) ?? []
         
         if indexPath.row == 0 {
         
