@@ -220,7 +220,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fmo-wO-zUa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="95.652173913043484" y="54.619565217391312"/>
+            <point key="canvasLocation" x="1128" y="29"/>
         </scene>
         <!--Camera View Controller-->
         <scene sceneID="g22-96-sQ2">
@@ -271,7 +271,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="872" y="29"/>
+            <point key="canvasLocation" x="1839" y="29"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Tga-Wc-GhJ">
@@ -289,7 +289,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RxC-hD-Zaa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="39" y="-624"/>
+            <point key="canvasLocation" x="130" y="29"/>
         </scene>
     </scenes>
     <resources>
